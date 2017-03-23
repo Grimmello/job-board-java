@@ -1,10 +1,11 @@
 <!--job.vtl-->
 <div class="well">
-  #if ($job)
+  #if ($category.getJobs())
+  #foreach($job in $category.getJobs())
     <h1>$job.getTitle()</h1>
     <ul>
-      <li>$job.getTitle</li>
-      <li>$job.getDescription</li>
+      <li>$job.getTitle()</li>
+      <li>$job.getDescription()</li>
     </ul>
     <h2> Contact</h2>
     <ul>
@@ -12,6 +13,7 @@
       <li>$job.getContactNumber()</li>
       <li>$job.getContactEmail()</li>
     </ul>
+  #end
     <a href="/">Return to home</a>
     <a href="/category/$category.getId()">Return to home</a>
   #else

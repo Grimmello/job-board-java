@@ -6,15 +6,25 @@
     <div class="col-md-6">
       <h3>Categories</h3>
       <ul>
-        <li></li>
+        <li><a href="/category/1">Programming</a></li>
+        <li><a href="/category/2">Automotive</a></li>
+        <li><a href="/category/3">Retail</a></li>
+        <li><a href="/category/4">Office</a></li>
       </ul>
     </div>
     <div class="col-md-6">
       <h3>Recent Jobs</h3>
-      <ul>
-        <li></li>
-      </ul>
+      #if($jobs.size() > 0)
+        <ul>
+          #foreach($job in $jobs)
+            <li><a href="/category/$job.getCategoryID()/job/$job.getID()">$job.getTitle()</a></li>
+          #end
+        </ul>
+      #else
+        <p>No Jobs yet :(</p>
+      #end
     </div>
   </div>
+  <h5><a href="/job-form">Add a job</a></h5>
 </div>
 <!--index.vtl-->

@@ -11,14 +11,14 @@ public class App {
     String layout = "templates/layout.vtl";
     Category programming = new Category("Programming");
     Category automotive = new Category("Automotive");
-    Category programming = new Category("Retail");
-    Category programming = new Category("Office");
+    Category retail = new Category("Retail");
+    Category office = new Category("Office");
 
     // home page
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       // jobs and our categories
-
+      model.put("jobs", Job.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -43,6 +43,14 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    //job page
+    get("/job", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("jobs", Job.all());
+      model.put("template", "templates/job.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     // job-form page
     get("/job-form", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -50,10 +58,9 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // job-form submit
+
     post("/job-form", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
       String title = request.queryParams("title");
       int categoryID = Integer.parseInt(request.queryParams("category"));
       String description = request.queryParams("description");
@@ -63,18 +70,22 @@ public class App {
       List<String> contacts = new ArrayList<String>();
       contacts.addAll(Arrays.asList(name, number, email));
 
-      Job job = new Job(title, category, description, contacts);
+      Job job = new Job(title, categoryID, description, contacts);
+      // job.addJob(job);
+
       if(categoryID == 1) {
-        programming.mJobs.addJob(job);
-      } else if (categoryID == 2) {
-        automotive.addJob(job);
-      } else if (categoryID == 3) {
-        retail.addJob(job);
-      } else if (categoryID == 4) {
-        office.addJob(job);
-      }
-      category.mJobs.addJob(job);
-      model.put("category", category);
+          programming.addJob(job);
+          model.put("category", programming);
+        } else if (categoryID == 2) {
+          automotive.addJob(job);
+          model.put("category", automotive);
+        } else if (categoryID == 3) {
+          retail.addJob(job);
+          model.put("category", retail);
+        } else if (categoryID == 4) {
+          office.addJob(job);
+          model.put("category", office);
+        }
       model.put("template", "templates/job.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());

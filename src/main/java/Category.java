@@ -49,6 +49,6 @@ public class Category {
   }
 
   public void addJob(Job job) {
-    mJobs.add(job);
+    mJobs.add(0, job);
   }
 }

@@ -58,7 +58,7 @@ public class CategoryTest {
   public void addJob_addsJobToList_true() {
     Category testCategory = new Category("title");
     List<String> contactList = new ArrayList<String>();
-    Job job = new Job("title", "category", "description", contactList);
+    Job job = new Job("title", 1, "description", contactList);
     testCategory.addJob(job);
     assertTrue(testCategory.getJobs().contains(job));
   }
