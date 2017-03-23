@@ -1,9 +1,14 @@
 <!--job-form.vtl-->
 <h1>Add a job</h1>
 
-<form action="/job" method="post">
+<form action="category/$category.getId()/job/job.getID()" method="post">
   <label for="category">Category</label>
-  <input type="text" name="category">
+  <select name="category">
+    <option value="1">Programming</option>
+    <option value="2">Automotive</option>
+    <option value="3">Retail</option>
+    <option value="4">Office</option>
+  </select>
   <label for="title">Title</label>
   <input type="text" name="title">
   <label for="description">Description</label>
@@ -12,6 +17,8 @@
   <input type="text" name="name">
   <label for="number">Contact Number</label>
   <input type="text" name="number">
+  <label for="email">Contact Email</label>
+  <input type="text" name="email">
   <button type="submit" name="button">Add Job</button>
 </form>
 

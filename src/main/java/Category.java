@@ -13,6 +13,13 @@ public class Category {
     mJobs = new ArrayList<Job>();
   }
 
+  // public void populateCategories() {
+  //   instances.add(new Category("Programming"));
+  //   instances.add(new Category("Automotive"));
+  //   instances.add(new Category("Retail"));
+  //   instances.add(new Category("Office"));
+  // }
+
   public String getName() {
     return mName;
   }

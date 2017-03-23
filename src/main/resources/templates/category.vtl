@@ -1,3 +1,16 @@
 <!--category.vtl-->
 
+<div class="well">
+  #if ($category)
+  <h1>$category.getName()</h1>
+
+  <ul>
+    #foreach($job in $category.getJobs())
+      <li><a href="/category/$category.getId()/job/$job.getID()">$job.getTitle()</a></li>
+    #end
+  </ul>
+  #else
+      <h1>Page Not Found</h1>
+  #end
+</div>
 <!--category.vtl-->

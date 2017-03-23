@@ -4,21 +4,25 @@ import java.time.format.DateTimeFormatter;
 
 public class Job {
   private String mTitle;
+  private String mCategory;
   private String mDescription;
   private String mTimeStamp;
   private static List<Job> instances = new ArrayList<Job>();
   private String mID;
+  private List<String> mContactList = new ArrayList<String>();
 
   public Job() {
 
   }
 
-  public Job(String title, String description) {
+  public Job(String title, String category, String description, List<String> contactList) {
     mTitle = title;
+    mCategory = category;
     mDescription = description;
     mTimeStamp = formatDate();
     instances.add(this);
     mID = randomString();
+    mContactList = contactList;
   }
 
   private String randomString() {
@@ -66,5 +70,18 @@ public class Job {
       }
     }
     return job;
+  }
+
+  public String getContactName() {
+    String contactName = mContactList.get(0);
+    return contactName;
+  }
+  public String getContactNumber() {
+    String contactNumber = mContactList.get(1);
+    return contactNumber;
+  }
+  public String getContactEmail() {
+    String contactEmail = mContactList.get(2);
+    return contactEmail;
   }
 }

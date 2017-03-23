@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.*;
 
 public class CategoryTest {
   @After
@@ -56,7 +57,8 @@ public class CategoryTest {
   @Test
   public void addJob_addsJobToList_true() {
     Category testCategory = new Category("title");
-    Job job = new Job("title", "description");
+    List<String> contactList = new ArrayList<String>();
+    Job job = new Job("title", "category", "description", contactList);
     testCategory.addJob(job);
     assertTrue(testCategory.getJobs().contains(job));
   }
